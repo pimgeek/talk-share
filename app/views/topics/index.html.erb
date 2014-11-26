@@ -23,6 +23,9 @@
         <td><%= topic.title2_tag %></td>
         <td><%= time_ago_in_words(topic.created_at) %></td>
       </tr>
+      <tr>
+        <td cols="6"><%#= topic.topic_fields.first.title1 %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

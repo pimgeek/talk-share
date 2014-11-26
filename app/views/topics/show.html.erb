@@ -12,9 +12,15 @@
   <dd><%= @topic.title2 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:title2_tag) %>:</strong></dt>
   <dd><%= @topic.title2_tag %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @topic.user_id %></dd>
 </dl>
+
+<% @topic.topic_fields.each do |f| %>
+  <p>
+    <%= f.title %> (<%= f.title_tag %>)
+  </p>
+<% end %>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               topics_path, :class => 'btn btn-default'  %>

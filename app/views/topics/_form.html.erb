@@ -21,29 +21,42 @@
     <div class="controls">
       <%= f.text_field :title1, :class => 'form-control' %>
     </div>
+    <%= f.hidden_field :title1_tag, :class => 'form-control', :value => @tags[0] %>
     <%= error_span(@topic[:title1]) %>
   </div>
-  <div class="control-group">
-    
-    <div class="controls">
-      <%= f.hidden_field :title1_tag, :class => 'form-control', :value => @tags[0] %>
-    </div>
-    <%= error_span(@topic[:title1_tag]) %>
-  </div>
+
+
   <div class="control-group">
     <%= f.label :title2, :class => 'control-label' %>
     (<%= @tags[1] %>)
     <div class="controls">
       <%= f.text_field :title2, :class => 'form-control' %>
     </div>
+    <%= f.hidden_field :title2_tag, :class => 'form-control', :value => @tags[1] %>
     <%= error_span(@topic[:title2]) %>
   </div>
+
+
+
+
+    
+
   <div class="control-group">
-    <div class="controls">
-      <%= f.hidden_field :title2_tag, :class => 'form-control', :value => @tags[1] %>
-    </div>
-    <%= error_span(@topic[:title2_tag]) %>
+    <% @sub_tags.length.times do |i| %>
+    <%= f.fields_for :topic_fields do |ff| %>
+      <div class="controls">
+        <%= ff.hidden_field :title_tag, :class => 'form-control', :value => @sub_tags[i] %>
+        <%= ff.label :title, :class => 'control-label' %>
+        (<%= @sub_tags[i] %>)
+        <%= ff.text_field :title, :class => 'form-control' %>
+      </div>
+    <% end %>
+    <% end %>
   </div>
+
+
+
+
   
 
 
