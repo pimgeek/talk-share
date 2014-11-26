@@ -24,7 +24,14 @@
         <td><%= time_ago_in_words(topic.created_at) %></td>
       </tr>
       <tr>
-        <td cols="6"><%#= topic.topic_fields.first.title1 %></td>
+        <td cols="6">
+          <%
+            topic.topic_fields.each do |f|
+          %>
+            <p><%= f.title %> (<%= f.title_tag %>)</p>
+
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
