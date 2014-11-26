@@ -8,7 +8,6 @@ https://github.com/mindpin/problems/issues/69
 
 
 ## Installation
-<br />
 
 cd [代码根目录]
 <br />
