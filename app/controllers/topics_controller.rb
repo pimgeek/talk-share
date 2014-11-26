@@ -6,11 +6,6 @@ class TopicsController < ApplicationController
 
     file = Rails.root.join('config', 'share_tags.yaml')
     @tags = YAML::load_documents(File.open(file))
-
-    # 去掉前两个选项
-    @sub_tags = YAML::load_documents(File.open(file))
-    @sub_tags.shift
-    @sub_tags.shift
   end
 
   def topic_params
@@ -28,12 +23,15 @@ class TopicsController < ApplicationController
   end
 
   def create
-    p topic_params
-    @topic = Topic.create(topic_params)
+    @topic = Topic.new(topic_params)
 
-    return redirect_to "/topics" if @topic.save
+    if @topic.save
+      respond_to do |format|
+        format.html { redirect_to "/" }
+      end
+    end
 
-    render 'new'
+    return render 'new'
   end
 
 

@@ -42,15 +42,18 @@
     
 
   <div class="control-group">
-    <% @sub_tags.length.times do |i| %>
-    <%= f.fields_for :topic_fields do |ff| %>
-      <div class="controls">
-        <%= ff.hidden_field :title_tag, :class => 'form-control', :value => @sub_tags[i] %>
-        <%= ff.label :title, :class => 'control-label' %>
-        (<%= @sub_tags[i] %>)
-        <%= ff.text_field :title, :class => 'form-control' %>
-      </div>
-    <% end %>
+
+    <% 
+      @tags.length.times do |i| 
+        next if i == 0 or i == 1
+    %>
+      <%= f.fields_for :topic_fields do |ff| %>
+        <div class="controls">
+          <%= ff.hidden_field :title_tag, :class => 'form-control', :value => @tags[i] %>
+          <%= @tags[i] %>
+          <%= ff.text_field :title, :class => 'form-control' %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -60,8 +63,8 @@
   
 
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+  <%= f.submit t('share_topic'), :class => 'btn btn-primary' %>
+  <%= link_to t('cancel_topic', :default => t("helpers.links.cancel")),
             topics_path, :class => 'btn btn-default' %>
 
 <% end %>
