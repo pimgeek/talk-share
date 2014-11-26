@@ -3,6 +3,9 @@ class TopicsController < ApplicationController
 
   def pre_load
     @topic = Topic.find(params[:id]) if params[:id]
+
+    file = Rails.root.join('config', 'share_tags.yaml')
+    @tags = YAML::load_documents(File.open(file))
   end
 
   def topic_params

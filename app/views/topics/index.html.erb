@@ -10,9 +10,7 @@
       <th><%= model_class.human_attribute_name(:title1_tag) %></th>
       <th><%= model_class.human_attribute_name(:title2) %></th>
       <th><%= model_class.human_attribute_name(:title2_tag) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -23,17 +21,7 @@
         <td><%= topic.title1_tag %></td>
         <td><%= topic.title2 %></td>
         <td><%= topic.title2_tag %></td>
-        <td><%= topic.user_id %></td>
-        <td><%=l topic.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_topic_path(topic), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      topic_path(topic),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
+        <td><%= time_ago_in_words(topic.created_at) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -17,39 +17,34 @@
 
   <div class="control-group">
     <%= f.label :title1, :class => 'control-label' %>
+    (<%= @tags[0] %>)
     <div class="controls">
       <%= f.text_field :title1, :class => 'form-control' %>
     </div>
     <%= error_span(@topic[:title1]) %>
   </div>
   <div class="control-group">
-    <%= f.label :title1_tag, :class => 'control-label' %>
+    
     <div class="controls">
-      <%= f.text_field :title1_tag, :class => 'form-control' %>
+      <%= f.hidden_field :title1_tag, :class => 'form-control', :value => @tags[0] %>
     </div>
     <%= error_span(@topic[:title1_tag]) %>
   </div>
   <div class="control-group">
     <%= f.label :title2, :class => 'control-label' %>
+    (<%= @tags[1] %>)
     <div class="controls">
       <%= f.text_field :title2, :class => 'form-control' %>
     </div>
     <%= error_span(@topic[:title2]) %>
   </div>
   <div class="control-group">
-    <%= f.label :title2_tag, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :title2_tag, :class => 'form-control' %>
+      <%= f.hidden_field :title2_tag, :class => 'form-control', :value => @tags[1] %>
     </div>
     <%= error_span(@topic[:title2_tag]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :user_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :user_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@topic[:user_id]) %>
-  </div>
+  
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
