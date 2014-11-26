@@ -9,6 +9,13 @@ https://github.com/mindpin/problems/issues/69
 
 ## Installation
 
+gem install therubyracer
+<br />
+
+gem install less-rails
+<br />
+
+
 cd [代码根目录]
 <br />
 
