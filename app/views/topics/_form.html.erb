@@ -43,7 +43,7 @@
 
   <div class="control-group">
 
-    <% 
+    <%
       @tags.length.times do |i| 
         next if i == 0 or i == 1
     %>
@@ -53,6 +53,7 @@
           <%= @tags[i] %>
           <%= ff.text_field :title, :class => 'form-control' %>
         </div>
+
       <% end %>
     <% end %>
   </div>

@@ -25,11 +25,7 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
 
-    if @topic.save
-      respond_to do |format|
-        format.html { redirect_to "/" }
-      end
-    end
+    return redirect_to "/topics" if @topic.save
 
     return render 'new'
   end
