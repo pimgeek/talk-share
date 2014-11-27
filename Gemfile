@@ -17,4 +17,5 @@ gem 'jbuilder', '~> 2.0'
 
 
 gem "twitter-bootstrap-rails"
+gem 'kaminari'
 

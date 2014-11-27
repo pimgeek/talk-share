@@ -6,4 +6,7 @@ class Topic < ActiveRecord::Base
 
   accepts_nested_attributes_for :topic_fields
 
+
+  default_scope -> { order('id desc') }
+
 end

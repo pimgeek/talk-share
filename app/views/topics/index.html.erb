@@ -1,42 +1,47 @@
-<%- model_class = Topic -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title1) %></th>
-      <th><%= model_class.human_attribute_name(:title1_tag) %></th>
-      <th><%= model_class.human_attribute_name(:title2) %></th>
-      <th><%= model_class.human_attribute_name(:title2_tag) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= link_to topic.id, topic_path(topic) %></td>
-        <td><%= topic.title1 %></td>
-        <td><%= topic.title1_tag %></td>
-        <td><%= topic.title2 %></td>
-        <td><%= topic.title2_tag %></td>
-        <td><%= time_ago_in_words(topic.created_at) %></td>
-      </tr>
-      <tr>
-        <td cols="6">
-          <%
-            topic.topic_fields.each do |f|
-          %>
-            <p><%= f.title %> (<%= f.title_tag %>)</p>
 
+
+ 
+
+  <div class="panel-body">
+
+      <!-- List group -->
+
+      <ul class="list-group">
+
+        <%= paginate @topics %>
+
+          <% @topics.each do |topic| %>
+          <li class="list-group-item">
+              <div class="row">
+                <h4><a href="/topics/<%= topic.id %>"><%= topic.title1 %></a></h4>
+                <P>
+                  <ul>
+                    <li>
+                      <%= topic.title1_tag %><%= topic.title1 %>
+                    </li>
+                    <li>
+                      <%= topic.title2_tag %><%= topic.title2 %>
+                    </li>
+                    <% topic.topic_fields.each do |f| %>
+                    <li>
+                      <%= f.title_tag %><%= f.title %>
+                    </li>
+                    <% end %>
+                  </ul>
+                  
+                </p>
+
+                <p class="time"><%= time_ago_in_words(topic.created_at) %>前</p>
+
+                <hr />
+              </div>
+          </li>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </ul>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_topic_path,
-            :class => 'btn btn-primary' %>
+
+  </div>
+
+
+  
+
