@@ -27,6 +27,9 @@ class TopicsController < ApplicationController
 
     return redirect_to "/topics" if @topic.save
 
+    @topic.topic_fields = Topic.new.topic_fields
+    @topic.topic_fields.build
+
     return render 'new'
   end
 
