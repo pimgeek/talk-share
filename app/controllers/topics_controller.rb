@@ -6,6 +6,11 @@ class TopicsController < ApplicationController
 
     file = Rails.root.join('config', 'share_tags.yaml')
     @tags = YAML::load_documents(File.open(file))
+
+    p @tags
+    @titles = @tags.map {|t| t.keys[0]}
+    p @titles
+    
   end
 
   def topic_params
