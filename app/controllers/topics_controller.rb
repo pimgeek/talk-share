@@ -37,5 +37,22 @@ class TopicsController < ApplicationController
   def show
   end
 
+  def edit
+    @topic.topic_fields = Topic.new.topic_fields
+    @topic.topic_fields.build
+  end
+
+
+  def update
+    if @topic.update_attributes(topic_params)
+      return redirect_to "/topics" if @topic.save
+    end
+
+    @topic.topic_fields = Topic.new.topic_fields
+    @topic.topic_fields.build
+
+    render 'edit'
+  end
+
 
 end
