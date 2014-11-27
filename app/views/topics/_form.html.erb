@@ -1,3 +1,6 @@
+
+
+
 <%= form_for @topic, :html => { :class => "form-horizontal topic" } do |f| %>
 
     <% if @topic.errors.any? %>
@@ -36,10 +39,11 @@
 
 
 
+  <p id="show-form">
+    <a href="javascript: void(0);">更多选项</a>
+  </p>
 
-    
-
-  <div class="control-group">
+  <div id="option-forms" class="control-group" style="display: none;">
 
     <%
       @tags.length.times do |i| 
@@ -56,6 +60,9 @@
     <% end %>
   </div>
 
+<script type="text/javascript">
+    // $("#option-forms").hide();
+</script>
 
 
 

@@ -6,3 +6,14 @@
   font-size: 12px;
   color: grey;
 }
+
+#show-form {
+  margin: 20px 0px 20px 0px;
+  font-weight: bold;
+  color: #987890;
+}
+
+
+.hidden{
+   display:none;
+}
