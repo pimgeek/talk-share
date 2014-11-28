@@ -1,0 +1,45 @@
+
+
+
+<%= form_for @talk_group, :url => { :controller => "topics", :action => 'update' }, :html => { :class => "form-horizontal topic" } do |f| %>
+
+    <% if @talk_group.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@talk_group.errors.count, "error") %> prohibited this topic from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @talk_group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%
+      @talk_group.topics.each_with_index do |t, i|
+    %>
+      <div class="controls">
+        <b><%= @titles[i] %> (<%= @tags[i][@titles[i]] %>)</b>
+        <input type="text" name="topics[<%= t.id %>][title]" value="<%= t.title %>" />
+      </div>
+
+    <%
+      end
+    %>
+
+  </div>
+
+
+
+  
+
+
+  <%= f.submit t('share_topic'), :class => 'btn btn-primary' %>
+  <%= link_to t('cancel_topic', :default => t("helpers.links.cancel")),
+            topics_path, :class => 'btn btn-default' %>
+
+<% end %>

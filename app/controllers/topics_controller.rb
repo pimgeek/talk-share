@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:talk_group).permit(:user_id, topics_attributes: [:title, :title_tag])
+    params.require(:talk_group).permit(:user_id, :title, topics_attributes: [:title, :title_tag])
   end
 
   def index
@@ -39,20 +39,31 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    # @talk_group.topics = TalkGroup.new.topics
-    @talk_group.topics.build
   end
 
 
   def update
-    if @talk_group.update_attributes(topic_params)
-      return redirect_to "/topics" if @talk_group.save
+
+    topic_list = params['topics']
+    keys = topic_list.keys
+
+    keys.each do |id|
+      t = Topic.find(id.to_i)
+      t.title = topic_list[id]['title']
+      t.save
     end
+    redirect_to "/topics"
 
-    @talk_group.topics = TalkGroup.new.topics
-    @talk_group.topics.build
+    # render :nothing => true
 
-    render 'edit'
+    # if @talk_group.update_attributes(topic_params)
+    #   return redirect_to "/topics" if @talk_group.save
+    # end
+
+    # @talk_group.topics = TalkGroup.new.topics
+    # @talk_group.topics.build
+
+    # render 'edit'
   end
 
 

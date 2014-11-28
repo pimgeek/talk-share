@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+g = TalkGroup.create
+
+5.times do |i|
+  g.topics.create(:title => 'test' + i.to_s, :title_tag => 'tag' + i.to_s)
+end
