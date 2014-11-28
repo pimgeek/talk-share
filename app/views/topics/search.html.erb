@@ -8,7 +8,7 @@
 
           <% @topic_by_tags.each do |t| %>
           <li>
-              <%= t.title %>
+              <a href="/topics/<%= t.id %>"><%= t.title %></a>
           </li>
           <% end %>
       </ul>
