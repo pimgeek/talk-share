@@ -2,11 +2,13 @@
 
       <!-- List group -->
 
-      <ul class="list-group">
+      <h4>标记为 [<%= @topic.title_tag %>] 数据如下</h4>
 
-          <% @topics.each do |topic| %>
-          <li class="list-group-item">
-              
+      <ul>
+
+          <% @topic_by_tags.each do |t| %>
+          <li>
+              <%= t.title %>
           </li>
           <% end %>
       </ul>

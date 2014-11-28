@@ -39,7 +39,7 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    @talk_group.topics = TalkGroup.new.topics
+    # @talk_group.topics = TalkGroup.new.topics
     @talk_group.topics.build
   end
 
@@ -57,6 +57,8 @@ class TopicsController < ApplicationController
 
 
   def search
+    @topic = Topic.find(params[:tid])
+    @topic_by_tags = Topic.by_tag(@topic.title_tag)
   end
 
 

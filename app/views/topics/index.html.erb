@@ -10,10 +10,15 @@
 
         <%= paginate @talk_groups %>
 
-          <% @talk_groups.each do |g| %>
+          <% 
+            @talk_groups.each do |g|
+              first_t = show_first(g.topics)
+          %>
           <li class="list-group-item">
               <div class="row">
-                <h4><a href="/topics/<%= g.id %>"><%= g.topics.first.title %></a></h4>
+                <% unless first_t.nil? %>
+                <h4><a href="/topics/<%= first_t.talk_group.id %>"><%= first_t.title %></a></h4>
+                <% end %>
                 <P>
                   <ul>
                     <% 
@@ -21,7 +26,8 @@
                         next if f.title.blank?
                     %>
                     <li>
-                      <%= f.title_tag %><%= f.title %>
+                      <a href="/topics/search?tid=<%= f.id %>"><%= f.title_tag %></a>
+                      <%= f.title %>
                     </li>
                     <% end %>
                   </ul>
