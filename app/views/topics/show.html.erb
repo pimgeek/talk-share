@@ -20,7 +20,8 @@
                       next if f.title.blank?
                   %>
                   <li>
-                    <%= f.title_tag %><%= f.title %>
+                    <a href="/topics/search?tid=<%= f.id %>"><%= f.title_tag %></a>
+                    <%= f.title %>
                   </li>
                   <% end %>
                 </ul>
