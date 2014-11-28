@@ -1,16 +1,16 @@
 
 
 
-<%= form_for @topic, :html => { :class => "form-horizontal topic" } do |f| %>
+<%= form_for @talk_group, :url => { :controller => "topics" }, :html => { :class => "form-horizontal topic" } do |f| %>
 
-    <% if @topic.errors.any? %>
+    <% if @talk_group.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@talk_group.errors.count, "error") %> prohibited this topic from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
-        <% @topic.errors.full_messages.each do |msg| %>
+        <% @talk_group.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
@@ -19,23 +19,21 @@
   <% end %>
 
   <div class="control-group">
-    <b><%= @titles[0] %> (<%= @tags[0][@titles[0]] %>)</b>
-    <div class="controls">
-      <%= f.text_field :title1, :class => 'form-control' %>
-    </div>
-    <%= f.hidden_field :title1_tag, :class => 'form-control', :value => @tags[0][@titles[0]] %>
-    <%= error_span(@topic[:title1]) %>
+    <%
+      @tags.length.times do |i| 
+        break if i > 1
+    %>
+      <%= f.fields_for :topics do |ff| %>
+        <div class="controls">
+          <%= ff.hidden_field :title_tag, :class => 'form-control', :value => @tags[i][@titles[i]] %>
+          <b><%= @titles[i] %> (<%= @tags[i][@titles[i]] %>)</b>
+          <%= ff.text_field :title, :class => 'form-control', :required => true %>
+        </div>
+
+      <% end %>
+    <% end %>
   </div>
 
-
-  <div class="control-group">
-    <b><%= @titles[1] %> (<%= @tags[1][@titles[1]] %>)</b>
-    <div class="controls">
-      <%= f.text_field :title2, :class => 'form-control' %>
-    </div>
-    <%= f.hidden_field :title2_tag, :class => 'form-control', :value => @tags[1][@titles[1]] %>
-    <%= error_span(@topic[:title2]) %>
-  </div>
 
 
 
@@ -49,7 +47,7 @@
       @tags.length.times do |i| 
         next if i == 0 or i == 1
     %>
-      <%= f.fields_for :topic_fields do |ff| %>
+      <%= f.fields_for :topics do |ff| %>
         <div class="controls">
           <%= ff.hidden_field :title_tag, :class => 'form-control', :value => @tags[i][@titles[i]] %>
           <b><%= @titles[i] %> (<%= @tags[i][@titles[i]] %>)</b>

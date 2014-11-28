@@ -10,35 +10,34 @@
 
 
           <li class="list-group-item">
-              <div class="row">
-                <h4><a href="/topics/<%= @topic.id %>"><%= @topic.title1 %></a></h4>
-                <P>
-                  <ul>
-                    <li>
-                      <%= @topic.title1_tag %><%= @topic.title1 %>
-                    </li>
-                    <li>
-                      <%= @topic.title2_tag %><%= @topic.title2 %>
-                    </li>
-                    <% @topic.topic_fields.each do |f| %>
-                    <li>
-                      <%= f.title_tag %><%= f.title %>
-                    </li>
-                    <% end %>
-                  </ul>
-                  
-                </p>
 
-                <p class="time"><%= time_ago_in_words(@topic.created_at) %>前</p>
+            <div class="row">
+              <h4><a href="/topics/<%= @talk_group.id %>"><%= @talk_group.topics.first.title %></a></h4>
+              <P>
+                <ul>
+                  <% 
+                    @talk_group.topics.each do |f| 
+                      next if f.title.blank?
+                  %>
+                  <li>
+                    <%= f.title_tag %><%= f.title %>
+                  </li>
+                  <% end %>
+                </ul>
+                
+              </p>
 
-              </div>
+            </div>
+
+
+            <p class="time"><%= time_ago_in_words(@talk_group.created_at) %>前</p>
           </li>
 
           
 <%= link_to t('.back', :default => t("helpers.links.back")),
               topics_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_topic_path(@topic), :class => 'btn btn-default', method: :get %>
+              edit_topic_path(@talk_group), :class => 'btn btn-default', method: :get %>
 <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
               topic_path(@topic),
               :method => 'delete',
