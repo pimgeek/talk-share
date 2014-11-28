@@ -8,7 +8,7 @@
 
           <% @topic_by_tags.each do |t| %>
           <li>
-              <h4><a href="/topics/<%= t.talk_group.id %>"><%= t.talk_group.topics.first.title_tag %></a></h4>
+              <h4><a href="/topics/<%= t.talk_group.id %>"><%= t.talk_group.topics.first.title %></a></h4>
 
               <p><%= t.title %></p>
           </li>
