@@ -19,4 +19,5 @@ gem 'jquery-ui-rails'
 
 gem "twitter-bootstrap-rails"
 gem 'kaminari'
+gem 'devise'
 
