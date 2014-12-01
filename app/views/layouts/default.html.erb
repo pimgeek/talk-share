@@ -51,6 +51,30 @@
             <li><%= link_to "分享列表", "/topics"  %></li>
             <li><%= link_to "新增分享", "/topics/new", method: :get  %></li>
           </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+              <li>
+                  <a href="/users/<%= current_user.username %>" title="">
+                      <%= current_user.username %>
+                  </a>
+              </li>
+              <li>
+                  <%= link_to "注销", destroy_user_session_path, :method => :delete %>
+              </li>
+              <% else %>
+                <li>
+                  <a href="/users/sign_in" title="登录">登录</a>
+                </li>
+                <li>
+                  <a href="/users/sign_up" title="注册">注册</a>
+                </li>
+              <% end %>
+
+          </ul>
+
+          
         </div>
       </div>
     </div>

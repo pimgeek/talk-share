@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!, 
               :except => [:show, :index]
-              
+
   before_filter :pre_load
 
   def pre_load
@@ -18,24 +18,16 @@ class TopicsController < ApplicationController
   end
 
   def index
-    p current_user
-    p cookies.signed[:user_id]
-
-    p '===='
-
-    render :nothing => true
     @talk_groups = TalkGroup.page params[:page]
   end
 
   def new
-    redirect_to "/users/sign_up" unless user_signed_in?
-
     @talk_group = TalkGroup.new
     @talk_group.topics.build
   end
 
   def create
-    @talk_group = TalkGroup.new(topic_params)
+    @talk_group = current_user.talk_groups.build(topic_params)
 
     return redirect_to "/topics" if @talk_group.save
 

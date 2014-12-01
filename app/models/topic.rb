@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-
+  
   belongs_to :talk_group
 
   validates :title_tag, :presence => true
