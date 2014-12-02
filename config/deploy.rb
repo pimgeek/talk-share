@@ -52,7 +52,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     queue! "bundle"
-    queue! "rake db:migrate"
+    queue! "RAILS_ENV=production rake db:migrate"
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -71,7 +71,7 @@ task :update_code => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     queue! "bundle"
-    queue! "rake db:migrate"
+    queue! "RAILS_ENV=production rake db:migrate"
     invoke :'rails:assets_precompile'
   end
 end
