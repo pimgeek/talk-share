@@ -24,8 +24,12 @@ class ApplicationController < ActionController::Base
     render_optional_error_file(403)
   end
 
+  def render_401
+    render_optional_error_file(401)
+  end
+
   def render_optional_error_file(status_code)
-    render file: "#{Rails.root}/public/404.html", status: 404, layout: true
+    render file: "#{Rails.root}/public/#{status_code}.html", status: 404, layout: true
   end
 
 

@@ -8,4 +8,5 @@ class Topic < ActiveRecord::Base
   default_scope -> { order('id asc') }
   scope :by_tag, ->(tag) { where("title_tag = ?", tag) }
 
+
 end

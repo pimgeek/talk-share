@@ -42,10 +42,12 @@ class TopicsController < ApplicationController
   end
 
   def edit
+    return render_401 unless @talk_group.owner?(current_user)
   end
 
 
   def update
+    return unless @talk_group.owner?(current_user)
 
     topic_list = params['topics']
     keys = topic_list.keys

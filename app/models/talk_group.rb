@@ -9,6 +9,11 @@ class TalkGroup < ActiveRecord::Base
   default_scope -> { order('id desc') }
 
 
+  def owner?(other_user)
+    user == other_user
+  end
+
+
   module UserMethods
     def self.included(base)
       base.has_many :talk_groups
