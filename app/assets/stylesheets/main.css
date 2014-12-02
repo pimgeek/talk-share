@@ -17,3 +17,8 @@
 .hidden{
    display:none;
 }
+
+.author {
+  font-size: 12px;
+  color: grey;
+}
