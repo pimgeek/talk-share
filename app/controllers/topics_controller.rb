@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
       t.title = topic_list[id]['title']
       t.save
     end
-    redirect_to "/topics"
+    redirect_to "/topics/#{@talk_group.id}"
 
     # render :nothing => true
 
