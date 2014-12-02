@@ -65,10 +65,7 @@
               </li>
               <% else %>
                 <li>
-                  <a href="/users/sign_in" title="登录">登录</a>
-                </li>
-                <li>
-                  <a href="/users/sign_up" title="注册">注册</a>
+                  <%= link_to "登录", "/users/sign_in", method: :get  %>
                 </li>
               <% end %>
 

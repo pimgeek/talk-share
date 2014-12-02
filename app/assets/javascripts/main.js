@@ -4,15 +4,22 @@ $(document).ready(function() {
     $("#option-forms").slideToggle();
   });
 
+
+
   $("form input[type=submit]").click(function() {
-    var email, username;
+    var email = '', username = '';
     username = $('#user_username').val();
 
-    $('#user_email').val(username + "@example.com");
-    email = $('#user_email').val();
+    if (username != '') {
+      $('#user_email').val(username + "@example.com");
+      email = $('#user_email').val();
+    }
+
+    alert(email)
+    
 
     if (email !== "") {
-      return $('#new_user').submit();
+      $('#new_user').submit();
     }
     
   });
