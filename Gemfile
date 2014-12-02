@@ -21,3 +21,9 @@ gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'devise'
 
+# 公网部署需要的gem begin
+gem "unicorn"
+gem 'mina',
+    :git => 'git://github.com/fushang318/mina.git',
+    :tag => 'v0.2.0fix'
+# 公网部署需要的gem end
