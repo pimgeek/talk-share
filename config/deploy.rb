@@ -14,7 +14,7 @@ set :shared_paths, [
   'config/secrets.yml',
   'tmp',
   'log',
-  'db'
+  'db/production.sqlite3'
 ]
 
 task :environment do
