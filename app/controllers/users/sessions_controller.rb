@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-# before_filter :configure_sign_in_params, only: [:create]
+  # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -25,20 +25,22 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     username = params['user']['username']
+    user = User.find_by_username(username)
 
-    if User.find_by_username(username).nil?
-      # rx = Net::HTTP.post_form(URI.parse('http://localhost:3000/users/sign_up'), params)
-      # p rx.body
+    if user.nil?
+
       user = User.create(
         :username => username,
-        :email => 'test@example.com',
+        :email => "#{username}@example.com",
         :password => 'password'
       )
 
       user.save
     end
 
-    super
+    p params
+    p user
 
+    super
   end
 end
