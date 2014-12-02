@@ -15,7 +15,7 @@ $(document).ready(function() {
       email = $('#user_email').val();
     }
 
-    alert(email)
+    // alert(email)
     
 
     if (email !== "") {
