@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  devise_scope :user do 
+    get "/users/:username" => 'users#show'
+  end
+
 
   root 'home#index'
 

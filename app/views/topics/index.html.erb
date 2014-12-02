@@ -4,43 +4,11 @@
 
   <div class="panel-body">
 
-      <!-- List group -->
+      <h2>本讨论圈的分享</h2>
 
-      <ul class="list-group">
+      <%= render 'topics/share_list' %>
 
-        <%= paginate @talk_groups %>
-
-          <% 
-            @talk_groups.each do |g|
-              first_t = show_first(g.topics)
-          %>
-          <li class="list-group-item">
-              <div class="row">
-                <% unless first_t.nil? %>
-                <h4><a href="/topics/<%= first_t.talk_group.id %>"><%= first_t.title %></a></h4>
-                <% end %>
-                <P>
-                  <ul>
-                    <% 
-                      g.topics.each do |f| 
-                        next if f.title.blank?
-                    %>
-                    <li>
-                      <a href="/topics/search?tid=<%= f.id %>"><%= f.title_tag %></a>
-                      <%= f.title %>
-                    </li>
-                    <% end %>
-                  </ul>
-                  
-                </p>
-
-                <p class="time"><%= g.user.username %> 发表于 <%= time_ago_in_words(g.created_at) %>前</p>
-
-                <hr />
-              </div>
-          </li>
-          <% end %>
-      </ul>
+      
 
 
   </div>
